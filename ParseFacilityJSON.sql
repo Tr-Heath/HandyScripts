@@ -20,7 +20,11 @@ SELECT    FacilityID
 					  END
 					, LEN(SUBSTRING(FacilityId, CHARINDEX('_',FacilityID), LEN(FacilityID))) --Length of checked string to go to end
 		) AS ChildFacilitySuffix
-							 
+		
+		, CASE WHEN PATINDEX('%[a-z]%', SUBSTRING(FacilityId, CHARINDEX('_',FacilityID)+1, LEN(FacilityID))) = 0
+			   THEN 'Parent'
+			   ELSE 'Child'
+		  END AS Parentage
 
 		,PATINDEX('%[a-z]%', SUBSTRING(FacilityId, CHARINDEX('_',FacilityID)+1, LEN(FacilityID))) AS PatternIndexOfFirstLetter
 		--, LEN(SUBSTRING(FacilityID,PATINDEX('%[a-z]%',FacilityID),0))

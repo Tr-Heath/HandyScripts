@@ -2,11 +2,12 @@
 --Does not seem to agree on IDs
 
 SELECT    
-		  FacilityName
-		, VISN
+		  VISN
 		, SUBSTRING(FacilityId, CHARINDEX('_',FacilityID)+1, LEN(FacilityID)) AS StationID
+		, FacilityName
+
 		, FacilityType
-		, UPPER(SUBSTRING(FacilityId, 0, CHARINDEX('_',FacilityID))) AS [Type_Abbreviated]
+		, UPPER(SUBSTRING(FacilityId, 0, CHARINDEX('_',FacilityID))) AS [Facility_Type_Abbreviated]
 	
 		--IF this is not NCA, Check for parent/child relationship of facility.
 		,CASE WHEN COALESCE(FacilityType,'') <> 'va_cemetery' AND COALESCE(FacilityType,'') <> 'vet_center'THEN  
@@ -25,6 +26,7 @@ SELECT
 		, [State]
 		, Zip
 		, FacilityID
+
 FROM 
 
 OPENROWSET(BULK 'C:\Users\Work\Documents\B3\SWIM\VA-Facilities.json', SINGLE_CLOB) as f

@@ -1,4 +1,4 @@
-#Calculate the number of attempts needed to reach a goal integeger
+#Calculate the number of attempts needed to reach a goal integer
 #Each attempt has a success value increment and a failure value increment
 import random
 
@@ -29,4 +29,4 @@ while simsRun < simRunCount:
     totalAttempts += runsimulation(simsRun)
     simsRun += 1
 
-print(f"Simulations are complete, the average number of attempts was {totalAttempts / simsRun}.")
+print(f"Simulations are complete, the average number of attempts was {totalAttempts / simsRun} to attain a goal of {target}, with success granting {advance} advancement and a {chance*100}% chance of success.")
